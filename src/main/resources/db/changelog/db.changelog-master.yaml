@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: mpi
+      changes:
+        - dropTable:
+            tableName: new_table
