@@ -1,7 +1,6 @@
 package ru.mikhailov.requesthandlersystem.master.request.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -48,6 +48,4 @@ public class Request {
     @Enumerated(EnumType.STRING)
     @Column(name = REQUEST_STATUS)
     RequestStatus status;
-
-
 }
