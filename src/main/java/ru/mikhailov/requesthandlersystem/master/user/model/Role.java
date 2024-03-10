@@ -10,6 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import ru.mikhailov.requesthandlersystem.security.config.Permission;
 
 import javax.persistence.*;
+import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,11 +39,28 @@ public class Role {
     @ElementCollection(targetClass = Permission.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
     @Enumerated(EnumType.STRING)
-    Set<Permission> permissions;
+    @Column(name = "permissions")
+    Set<Permission> permissions = new HashSet<>();
 
     public Set<GrantedAuthority> getAuthorities() {
         return permissions.stream()
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
                 .collect(Collectors.toSet());
+    }
+
+    public static Set<Permission> getPermissionsForRole(String roleName) {
+        Set<Permission> permissions = EnumSet.noneOf(Permission.class);
+        switch (roleName) {
+            case "USER":
+                permissions.add(Permission.USER);
+                break;
+            case "OPERATOR":
+                permissions.add(Permission.OPERATOR);
+                break;
+            case "ADMIN":
+                permissions.add(Permission.ADMIN);
+                break;
+        }
+        return permissions;
     }
 }

@@ -13,6 +13,7 @@ import ru.mikhailov.requesthandlersystem.master.request.repository.RequestReposi
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserDto;
 import ru.mikhailov.requesthandlersystem.master.user.mapper.UserMapper;
+import ru.mikhailov.requesthandlersystem.master.user.model.Role;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
 import ru.mikhailov.requesthandlersystem.master.user.repository.RoleRepository;
 import ru.mikhailov.requesthandlersystem.master.user.repository.UserRepository;
@@ -24,6 +25,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static ru.mikhailov.requesthandlersystem.master.config.Validation.validationBodyUser;
+import static ru.mikhailov.requesthandlersystem.master.user.model.Role.getPermissionsForRole;
 
 @Service
 @Slf4j
@@ -49,33 +51,23 @@ public class UserServiceImpl implements UserService {
     public UserDto createUser(UserDto userDto) {
         validationBodyUser(userMapper.toUser(userDto));
         User user = userMapper.toUser(userDto);
-        if (userRepository.findByNameOrderByEmail()
-                .stream()
-                .noneMatch(email -> email.equals(userDto.getEmail()))) {
-            Set<ru.mikhailov.requesthandlersystem.master.user.model.Role> roles = new HashSet<>();
-            Set<ru.mikhailov.requesthandlersystem.master.user.model.Role> roleUserDto = userDto.getUserRole();
-
-            if (roleRepository.findAll().isEmpty()) {
-                user.setUserRole(roleUserDto);
-                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-                user = userRepository.save(user);
-                return userMapper.toUserDto(user);
-            }
-            for (ru.mikhailov.requesthandlersystem.master.user.model.Role role : roleUserDto) {
-                ru.mikhailov.requesthandlersystem.master.user.model.Role roleFromDataBase = roleRepository.findByName(role.getName());
-                if (roleFromDataBase != null) {
-                    roles.add(roleFromDataBase);
-                } else {
-                    roles.add(role);
-                }
-            }
-            user.setUserRole(roles);
-            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-            user = userRepository.save(user);
-        } else {
+        if (userRepository.existsByEmail(user.getEmail())) {
             throw new ConflictingRequestException(
-                    String.format("Пользователь с email:  %s - уже существует!", userDto.getEmail()));
+                    String.format("Пользователь с email: %s - уже существует!",
+                            user.getEmail()));
         }
+        Set<Role> roles = new HashSet<>();
+        for (Role roleDto : userDto.getUserRole()) {
+            Role role = roleRepository.findByName(roleDto.getName());
+            if (role == null) {
+                roleDto.setPermissions(Role.getPermissionsForRole(roleDto.getName()));
+                role = roleRepository.save(roleDto);
+            }
+            roles.add(role);
+        }
+        user.setUserRole(roles);
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        user = userRepository.save(user);
         return userMapper.toUserDto(user);
     }
 
