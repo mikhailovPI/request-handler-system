@@ -2,6 +2,7 @@ package ru.mikhailov.requesthandlersystem.master.request.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
@@ -15,7 +16,6 @@ import ru.mikhailov.requesthandlersystem.master.request.model.Request;
 import ru.mikhailov.requesthandlersystem.master.request.model.RequestStatus;
 import ru.mikhailov.requesthandlersystem.master.request.repository.RequestRepository;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
-import ru.mikhailov.requesthandlersystem.security.config.Role;
 import ru.mikhailov.requesthandlersystem.master.user.repository.UserRepository;
 
 import java.time.LocalDateTime;
@@ -33,6 +33,13 @@ public class RequestServiceImpl implements RequestService {
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
     private final RequestMapper requestMapper;
+
+    @Value("${role.admin}")
+    private String adminRoleName;
+    @Value("${role.operator}")
+    private String operatorRoleName;
+    @Value("${role.user}")
+    private String userRoleName;
 
     //Методы для пользователя
     @Override
@@ -64,7 +71,7 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(userId);
         user.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.USER)))
+                .filter(role -> !role.getName().equals(userRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может создавать заявку, т.к. не является %s!",
@@ -73,7 +80,7 @@ public class RequestServiceImpl implements RequestService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.USER));
+                                    userRoleName));
                 });
         Request request = requestMapper.toRequest(requestDto);
         request.setPublishedOn(LocalDateTime.now());
@@ -92,7 +99,7 @@ public class RequestServiceImpl implements RequestService {
         }
         user.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.USER)))
+                .filter(role -> !role.getName().equals(userRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может отправить заявку," +
@@ -102,7 +109,7 @@ public class RequestServiceImpl implements RequestService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.USER));
+                                    userRoleName));
                 });
         if (request.getStatus().equals(RequestStatus.DRAFT)) {
             request.setStatus(RequestStatus.SHIPPED);
@@ -121,7 +128,7 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(userId);
         user.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.USER)))
+                .filter(role -> !role.getName().equals(userRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может редактировать заявку, " +
@@ -131,7 +138,7 @@ public class RequestServiceImpl implements RequestService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.USER));
+                                    userRoleName));
                 });
         if (!request.getUser().getId().equals(userId)) {
             throw new NotFoundException(
@@ -171,26 +178,25 @@ public class RequestServiceImpl implements RequestService {
 
     @Override
     public List<RequestDto> getUserRequest(String namePart, Integer sort, int from, int size) {
-        return null;
-//        PageRequestOverride pageRequest = PageRequestOverride.of(from, size);
-//        if (sort.equals(0)) {
-//            //сортировка по убыванию даты
-//            return requestRepository.findOrdersByUserNamePart(namePart, pageRequest)
-//                    .stream()
-//                    .sorted(Comparator.comparingInt(o -> o.getPublishedOn().getNano()))
-//                    .map(requestMapper::toRequestDto)
-//                    .collect(Collectors.toList());
-//        } else if (sort.equals(1)) {
-//            //сортировка по возрастанию даты
-//            return requestRepository.findOrdersByUserNamePart(namePart, pageRequest)
-//                    .stream()
-//                    .sorted((o1, o2) -> o2.getPublishedOn().getNano() - o1.getPublishedOn().getNano())
-//                    .map(requestMapper::toRequestDto)
-//                    .collect(Collectors.toList());
-//        } else {
-//            throw new NotFoundException(
-//                    "Сортировка возможна только по возрастанию или убыванию!");
-//        }
+        PageRequestOverride pageRequest = PageRequestOverride.of(from, size);
+        if (sort.equals(0)) {
+            //сортировка по убыванию даты
+            return requestRepository.findOrdersByUserNamePart(namePart, pageRequest)
+                    .stream()
+                    .sorted(Comparator.comparingInt(o -> o.getPublishedOn().getNano()))
+                    .map(requestMapper::toRequestDto)
+                    .collect(Collectors.toList());
+        } else if (sort.equals(1)) {
+            //сортировка по возрастанию даты
+            return requestRepository.findOrdersByUserNamePart(namePart, pageRequest)
+                    .stream()
+                    .sorted((o1, o2) -> o2.getPublishedOn().getNano() - o1.getPublishedOn().getNano())
+                    .map(requestMapper::toRequestDto)
+                    .collect(Collectors.toList());
+        } else {
+            throw new NotFoundException(
+                    "Сортировка возможна только по возрастанию или убыванию!");
+        }
     }
 
     @Override
@@ -244,7 +250,7 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(operatorId);
         user.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.OPERATOR)))
+                .filter(role -> !role.getName().equals(operatorRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может принимать заявку, " +
@@ -254,7 +260,7 @@ public class RequestServiceImpl implements RequestService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.OPERATOR));
+                                    operatorRoleName));
                 });
         if (request.getStatus().equals(RequestStatus.SHIPPED)) {
             request.setStatus(RequestStatus.ACCEPTED);
@@ -272,7 +278,7 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(operatorId);
         user.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.OPERATOR)))
+                .filter(role -> !role.getName().equals(operatorRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s)не может отклонять заявку, " +
@@ -282,7 +288,7 @@ public class RequestServiceImpl implements RequestService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.OPERATOR));
+                                    operatorRoleName));
                 });
         if (request.getStatus().equals(RequestStatus.SHIPPED) ||
                 request.getStatus().equals(RequestStatus.ACCEPTED)) {

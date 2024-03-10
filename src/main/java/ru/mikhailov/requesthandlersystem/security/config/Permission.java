@@ -1,8 +1,9 @@
 package ru.mikhailov.requesthandlersystem.security.config;
 
 public enum Permission {
-    WRITE("user:write"),
-    READ("user:write");
+    USER("user:write"),
+    OPERATOR("operator:write"),
+    ADMIN("admin:write");
 
     private final String permission;
 

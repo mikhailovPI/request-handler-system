@@ -26,6 +26,7 @@ public class User {
     public static final String USERS_PASSWORD = "user_password";
     public static final String USERS_EMAIL = "email";
     public static final String ROLE_ID = "role_id";
+    public static final String STATUS = "status";
 
 
     @Id
@@ -47,4 +48,7 @@ public class User {
             joinColumns = @JoinColumn(name = USERS_ID),
             inverseJoinColumns = @JoinColumn(name = ROLE_ID))
     private Set<Role> userRole = new HashSet<>();
+
+    @Column(name = STATUS)
+    private Status status;
 }

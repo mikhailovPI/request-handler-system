@@ -1,3 +1,4 @@
+/*
 package ru.mikhailov.requesthandlersystem.security.config;
 
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,9 +7,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public enum Role {
-    USER(Set.of(Permission.READ)),
-    OPERATOR(Set.of(Permission.READ, Permission.WRITE)),
-    ADMIN(Set.of(Permission.READ, Permission.WRITE));
+    USER(Set.of(Permission.USER)),
+    OPERATOR(Set.of(Permission.OPERATOR)),
+    ADMIN(Set.of(Permission.ADMIN));
 
     private final Set<Permission> permissionSet;
 
@@ -26,3 +27,4 @@ public enum Role {
                 .collect(Collectors.toSet());
     }
 }
+*/

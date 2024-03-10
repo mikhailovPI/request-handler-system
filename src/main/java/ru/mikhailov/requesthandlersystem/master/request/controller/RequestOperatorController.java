@@ -2,6 +2,7 @@ package ru.mikhailov.requesthandlersystem.master.request.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestDto;
@@ -20,6 +21,7 @@ public class RequestOperatorController {
 
     //Получение всех заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/{sort}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public List<RequestAllDto> getRequests(
             @PathVariable Integer sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
@@ -30,6 +32,7 @@ public class RequestOperatorController {
 
     //Получение всех заявок пользователя по его имени с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/users/{sort}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public List<RequestDto> getUserRequest(
             @RequestParam String namePart,
             @PathVariable Integer sort,
@@ -42,6 +45,7 @@ public class RequestOperatorController {
 
     //Получение всех принятых заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/accept/users/{sort}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public List<RequestAllDto> getAcceptRequest(
             @PathVariable Integer sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
@@ -53,6 +57,7 @@ public class RequestOperatorController {
 
     //Получение всех отклоненных заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/reject/users/{sort}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public List<RequestAllDto> getRejectRequest(
             @PathVariable Integer sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
@@ -64,6 +69,7 @@ public class RequestOperatorController {
 
     //Принятие заявки
     @PatchMapping(path = "/{operatorId}/accept/{requestId}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public RequestAllDto acceptRequest(
             @PathVariable Long operatorId,
             @PathVariable Long requestId) {
@@ -74,6 +80,7 @@ public class RequestOperatorController {
 
     //Отклонение заявки
     @PatchMapping(path = "/{operatorId}/reject/{requestId}")
+    @PreAuthorize("hasAuthority('operator:write')")
     public RequestAllDto rejectRequest(
             @PathVariable Long operatorId,
             @PathVariable Long requestId) {

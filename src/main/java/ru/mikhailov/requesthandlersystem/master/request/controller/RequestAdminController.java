@@ -2,6 +2,7 @@ package ru.mikhailov.requesthandlersystem.master.request.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.service.UserService;
@@ -20,6 +21,7 @@ public class RequestAdminController {
 
     //Посмотреть список всех пользователей
     @GetMapping(path = "/{adminId}/users")
+    @PreAuthorize("hasAuthority('admin:write')")
     public List<UserAdminDto> getAllUsers(
             @PathVariable Long adminId,
             @RequestParam(name = "from", defaultValue = "0") int from,
@@ -30,6 +32,7 @@ public class RequestAdminController {
 
     //Поиск пользователя по имени
     @GetMapping(path = "/user")
+    @PreAuthorize("hasAuthority('admin:write')")
     public UserAdminDto getUserByName(
             @RequestParam(name = "namePart", required = false) String namePart) {
         log.info("URL: /request/admin/user. GetMapping/Поиск пользователя по имени/getUserByName");
@@ -38,6 +41,7 @@ public class RequestAdminController {
 
     //Назначение прав оператора
     @PatchMapping(path = "/{adminId}/user/{userId}")
+    @PreAuthorize("hasAuthority('admin:write')")
     public UserAdminDto assignRightsOperator(
             @PathVariable Long adminId,
             @PathVariable Long userId) {
@@ -48,6 +52,7 @@ public class RequestAdminController {
 
     //Удаление пользователя по id
     @DeleteMapping(path = "/{adminId}/user/{userId}")
+    @PreAuthorize("hasAuthority('admin:write')")
     public void deleteUserById(
             @PathVariable Long adminId,
             @PathVariable Long userId) {

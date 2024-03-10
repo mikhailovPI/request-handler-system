@@ -2,6 +2,8 @@ package ru.mikhailov.requesthandlersystem.master.user.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
@@ -12,7 +14,6 @@ import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserDto;
 import ru.mikhailov.requesthandlersystem.master.user.mapper.UserMapper;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
-import ru.mikhailov.requesthandlersystem.security.config.Role;
 import ru.mikhailov.requesthandlersystem.master.user.repository.RoleRepository;
 import ru.mikhailov.requesthandlersystem.master.user.repository.UserRepository;
 
@@ -34,7 +35,14 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final RequestRepository requestRepository;
     private final UserMapper userMapper;
-    //private final PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
+
+    @Value("${role.admin}")
+    private String adminRoleName;
+    @Value("${role.operator}")
+    private String operatorRoleName;
+    @Value("${role.user}")
+    private String userRoleName;
 
     @Override
     @Transactional
@@ -49,7 +57,7 @@ public class UserServiceImpl implements UserService {
 
             if (roleRepository.findAll().isEmpty()) {
                 user.setUserRole(roleUserDto);
-                //user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+                user.setPassword(passwordEncoder.encode(userDto.getPassword()));
                 user = userRepository.save(user);
                 return userMapper.toUserDto(user);
             }
@@ -62,7 +70,7 @@ public class UserServiceImpl implements UserService {
                 }
             }
             user.setUserRole(roles);
-            //user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+            user.setPassword(passwordEncoder.encode(userDto.getPassword()));
             user = userRepository.save(user);
         } else {
             throw new ConflictingRequestException(
@@ -78,7 +86,7 @@ public class UserServiceImpl implements UserService {
         User admin = validationUser(adminId);
         admin.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.ADMIN)))
+                .filter(role -> !role.getName().equals(adminRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может просматривать всех пользователей, " +
@@ -88,7 +96,7 @@ public class UserServiceImpl implements UserService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.ADMIN));
+                                    adminRoleName));
                 });
         return userRepository.findAll(pageRequest)
                 .stream()
@@ -108,7 +116,7 @@ public class UserServiceImpl implements UserService {
         User user = validationUser(userId);
         admin.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.ADMIN)))
+                .filter(role -> !role.getName().equals(adminRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может назначить новую роль пользователю, " +
@@ -118,22 +126,22 @@ public class UserServiceImpl implements UserService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.ADMIN));
+                                    adminRoleName));
                 });
         Set<ru.mikhailov.requesthandlersystem.master.user.model.Role> roleSet = new HashSet<>(
                 Collections.singleton(
                         roleRepository.findByName(
-                                String.valueOf(Role.OPERATOR))));
+                                operatorRoleName)));
         if (user.getUserRole()
                 .stream()
-                .anyMatch(role -> role.getName().equals(String.valueOf(Role.USER)))) {
+                .anyMatch(role -> role.getName().equals(userRoleName))) {
             user.setUserRole(roleSet);
         } else {
             throw new NotFoundException(
                     String.format("Пользователю %s нельзя назначить роль %s, т.к. он не является %s",
                             user.getName(),
-                            Role.OPERATOR,
-                            Role.USER));
+                            operatorRoleName,
+                            userRoleName));
         }
         userRepository.save(user);
         return userMapper.toUserAdminDto(user);
@@ -146,7 +154,7 @@ public class UserServiceImpl implements UserService {
         validationUser(userId);
         admin.getUserRole()
                 .stream()
-                .filter(role -> !role.getName().equals(String.valueOf(Role.ADMIN)))
+                .filter(role -> !role.getName().equals(adminRoleName))
                 .forEach(role -> {
                     throw new NotFoundException(
                             String.format("Пользователь %s (роль - %s) не может удалить пользователя, " +
@@ -156,7 +164,7 @@ public class UserServiceImpl implements UserService {
                                             .stream()
                                             .map(ru.mikhailov.requesthandlersystem.master.user.model.Role::getName)
                                             .collect(Collectors.toSet()),
-                                    Role.ADMIN));
+                                    adminRoleName));
                 });
         requestRepository.deleteRequestsByUserId(userId);
         userRepository.deleteById(userId);

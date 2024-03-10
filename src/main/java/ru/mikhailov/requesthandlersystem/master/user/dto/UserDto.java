@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import ru.mikhailov.requesthandlersystem.master.user.model.Role;
+import ru.mikhailov.requesthandlersystem.master.user.model.Status;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,4 +26,6 @@ public class UserDto {
     String email;
 
     Set<Role> userRole = new HashSet<>();
+
+    Status status;
 }
