@@ -29,7 +29,7 @@ public class RequestUserController {
             @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
-        log.info("URL: /request/users/{userId}. GetMapping/Просмотр всех заявок пользователя/createRequest");
+        log.info("URL: /request/users/{userId}. GetMapping/Просмотр всех заявок пользователя/getRequestsByUser");
         return requestService.getRequestsByUser(userId, sort, from, size);
     }
 

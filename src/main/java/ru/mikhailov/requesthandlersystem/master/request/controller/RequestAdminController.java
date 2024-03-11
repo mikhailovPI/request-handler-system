@@ -4,6 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
+import ru.mikhailov.requesthandlersystem.master.request.model.RequestStatus;
+import ru.mikhailov.requesthandlersystem.master.request.service.RequestService;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.service.UserService;
 
@@ -18,6 +21,7 @@ public class RequestAdminController {
     public final static String URL_ADMIN = "/request/admin";
 
     private final UserService userService;
+    private final RequestService requestService;
 
     //Посмотреть список всех пользователей
     @GetMapping(path = "/{adminId}/users")
@@ -35,7 +39,7 @@ public class RequestAdminController {
     @PreAuthorize("hasAuthority('admin:write')")
     public UserAdminDto getUserByNamePart(
             @RequestParam(name = "namePart", required = false) String namePart) {
-        log.info("URL: /request/admin/user. GetMapping/Поиск пользователя по имени/getUserByName");
+        log.info("URL: /request/admin/user. GetMapping/Поиск пользователя по имени/getUserByNamePart");
         return userService.getUserByNamePart(namePart);
     }
 
@@ -45,8 +49,8 @@ public class RequestAdminController {
     public UserAdminDto assignRightsOperator(
             @PathVariable Long adminId,
             @PathVariable Long userId) {
-        log.info("URL: /request/admin/{adminId}/user/{userId}. PatchMapping/Поиск пользователя " +
-                "по имени/getUserByName");
+        log.info("URL: /request/admin/{adminId}/user/{userId}. PatchMapping/Назначение прав оператор " +
+                "по имени/assignRightsOperator");
         return userService.assignRightsOperator(adminId, userId);
     }
 
@@ -60,4 +64,18 @@ public class RequestAdminController {
                 + userId + "/deleteUserById");
         userService.deleteUserById(adminId, userId);
     }
+
+    //Посмотреть заявки
+    @GetMapping(path = "/request/{sort}")
+    @PreAuthorize("hasAuthority('admin:write')")
+    public List<RequestAllDto> getAdminRequests(
+            @RequestParam(name = "namePart", required = false, defaultValue = "") String namePart,
+            @RequestParam List<RequestStatus> status,
+            @PathVariable String sort,
+            @RequestParam(name = "from", defaultValue = "0") int from,
+            @RequestParam(name = "size", defaultValue = "5") int size) {
+        log.info("URL: /request/admin/request. GetMapping/Получение админом заявок/getAdminRequests");
+        return requestService.getAdminRequests(namePart, status, sort, from, size);
+    }
+
 }

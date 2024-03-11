@@ -6,6 +6,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
 import ru.mikhailov.requesthandlersystem.master.request.model.Request;
+import ru.mikhailov.requesthandlersystem.master.request.model.RequestStatus;
 
 import java.util.List;
 
@@ -23,9 +24,17 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     @Query("SELECT r FROM Request r WHERE r.status = 'REJECTED'")
     List<Request> findRequestStatusRejected(PageRequestOverride pageRequest);
 
-    @Query("SELECT r FROM Request r WHERE LOWER(r.user.name) LIKE CONCAT('%', LOWER(:namePart),'%') " +
-            "AND r.status= 'SHIPPED'")
-    List<Request> findShippedRequestsByUserNamePart(@Param("namePart") String namePart, PageRequestOverride pageRequest);
+    @Query("SELECT r FROM Request r " +
+            "WHERE LOWER(r.user.name) LIKE CONCAT('%', LOWER(:namePart),'%') AND r.status= 'SHIPPED'")
+    List<Request> findShippedRequestsByUserNamePart(
+            @Param("namePart") String namePart,
+            PageRequestOverride pageRequest);
 
     void deleteRequestsByUserId(Long userId);
+
+    @Query("SELECT r FROM Request r " +
+            "WHERE r.status IN :statuses AND LOWER(r.user.name) LIKE LOWER(CONCAT('%', :namePart, '%'))")
+    List<Request> findByStatusAndUserNamePart(@Param("namePart") String namePart,
+                                              @Param("status") List<RequestStatus> statuses,
+                                              PageRequestOverride pageable);
 }

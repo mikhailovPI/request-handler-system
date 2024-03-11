@@ -29,7 +29,7 @@ import static ru.mikhailov.requesthandlersystem.master.config.Validation.validat
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -46,7 +46,6 @@ public class UserServiceImpl implements UserService {
     private String userRoleName;
 
     @Override
-    @Transactional
     public UserDto createUser(UserDto userDto) {
         validationBodyUser(userMapper.toUser(userDto));
         User user = userMapper.toUser(userDto);
@@ -70,54 +69,31 @@ public class UserServiceImpl implements UserService {
         return userMapper.toUserDto(user);
     }
 
-    // TODO Методы для админа
+    //Методы для админа
     @Override
+    @Transactional(readOnly = true)
     public List<UserAdminDto> getAllUsers(Long adminId, int from, int size) {
         PageRequestOverride pageRequest = PageRequestOverride.of(from, size);
         User admin = validationUser(adminId);
-        boolean isAdmin = admin.getUserRole()
-                .stream()
-                .anyMatch(role -> role.getName().equals(adminRoleName));
+        validationAdminRole(admin);
 
-        if (!isAdmin) {
-            throw new NotFoundException(String.format(
-                    "Пользователь %s (роль - %s) не может просматривать всех пользователей, т.к. не является %s!",
-                    admin.getName(),
-                    admin.getUserRole().stream()
-                            .map(Role::getName)
-                            .collect(Collectors.joining(", ")),
-                    adminRoleName));
-        }
         return userRepository.findAll(pageRequest).stream()
                 .map(userMapper::toUserAdminDto)
                 .collect(Collectors.toList());
     }
 
     @Override
+    @Transactional(readOnly = true)
     public UserAdminDto getUserByNamePart(String namePart) {
         return userMapper.toUserAdminDto(userRepository.findFirstUserByNamePart(namePart));
     }
 
     @Override
-    @Transactional
     public UserAdminDto assignRightsOperator(Long adminId, Long userId) {
         User admin = validationUser(adminId);
         User user = validationUser(userId);
+        validationAdminRole(admin);
 
-        boolean isAdmin = admin.getUserRole()
-                .stream()
-                .anyMatch(role -> role.getName().equals(adminRoleName));
-        if (!isAdmin) {
-            throw new NotFoundException(
-                    String.format(
-                            "Пользователь %s (роль - %s) не может назначить новую роль пользователю, " +
-                                    "т.к. не является %s!",
-                            admin.getName(),
-                            admin.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            adminRoleName));
-        }
         Role operatorRole = roleRepository.findByName(operatorRoleName);
         if (operatorRole == null) {
             throw new NotFoundException("Роль оператора не найдена.");
@@ -138,20 +114,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional
     public void deleteUserById(Long adminId, Long userId) {
         User admin = validationUser(adminId);
-        boolean isAdmin = admin.getUserRole().stream()
-                .anyMatch(role -> role.getName().equals(adminRoleName));
-        if (!isAdmin) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s) не может удалить пользователя, т.к. не является %s!",
-                            admin.getName(),
-                            admin.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            adminRoleName));
-        }
+        validationAdminRole(admin);
+
         requestRepository.deleteRequestsByUserId(userId);
         userRepository.deleteById(userId);
     }
@@ -160,5 +126,22 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new NotFoundException(
                         String.format("Пользователь %s не существует!", userId)));
+    }
+
+    private void validationAdminRole(User admin) {
+        boolean isAdmin = admin.getUserRole()
+                .stream()
+                .anyMatch(role -> role.getName().equals(adminRoleName));
+        if (!isAdmin) {
+            throw new NotFoundException(
+                    String.format(
+                            "Пользователь %s (роль - %s) не может назначить новую роль пользователю, " +
+                                    "т.к. не является %s!",
+                            admin.getName(),
+                            admin.getUserRole().stream()
+                                    .map(Role::getName)
+                                    .collect(Collectors.joining(", ")),
+                            adminRoleName));
+        }
     }
 }

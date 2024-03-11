@@ -5,6 +5,7 @@ import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestNewDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestUpdateDto;
+import ru.mikhailov.requesthandlersystem.master.request.model.RequestStatus;
 
 import java.util.List;
 
@@ -33,4 +34,6 @@ public interface RequestService {
 
     RequestAllDto rejectRequest(Long operatorId, Long requestId);
 
+    List<RequestAllDto> getAdminRequests(String namePart, List<RequestStatus> status,
+                                            String sort, int from, int size);
 }

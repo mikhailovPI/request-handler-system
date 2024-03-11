@@ -24,19 +24,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
+@Transactional
 public class RequestServiceImpl implements RequestService {
 
     private final RequestRepository requestRepository;
     private final UserRepository userRepository;
     private final RequestMapper requestMapper;
 
-    @Value("${role.admin}")
-    private String adminRoleName;
     @Value("${role.operator}")
     private String operatorRoleName;
     @Value("${role.user}")
@@ -44,6 +41,7 @@ public class RequestServiceImpl implements RequestService {
 
     //Методы для пользователя
     @Override
+    @Transactional(readOnly = true)
     public List<RequestDto> getRequestsByUser(Long userId, String sort, int from, int size) {
         validationUser(userId);
         validateSortParameter(sort);
@@ -58,22 +56,10 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional
     public RequestAllDto createRequest(RequestNewDto requestDto, Long userId) {
         User user = validationUser(userId);
-        boolean hasUserRole = user.getUserRole()
-                .stream()
-                .anyMatch(role -> role.getName().equals(userRoleName));
+        validationUserRole(user);
 
-        if (!hasUserRole) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s) не может создавать заявку, т.к. не является %s!",
-                            user.getName(),
-                            user.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            userRoleName));
-        }
         Request request = requestMapper.toRequest(requestDto);
         request.setPublishedOn(LocalDateTime.now());
         request.setUser(user);
@@ -82,7 +68,6 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional
     public RequestDto sendRequest(Long userId, Long requestId) {
         Request request = validationRequest(requestId);
         User user = validationUser(userId);
@@ -93,17 +78,7 @@ public class RequestServiceImpl implements RequestService {
                             user.getName()));
         }
 
-        boolean hasUserRole = user.getUserRole().stream()
-                .anyMatch(role -> role.getName().equals(userRoleName));
-        if (!hasUserRole) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s) не может отправить заявку, т.к. не является %s!",
-                            user.getName(),
-                            user.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            userRoleName));
-        }
+        validationUserRole(user);
 
         if (request.getStatus().equals(RequestStatus.DRAFT)) {
             request.setStatus(RequestStatus.SHIPPED);
@@ -116,22 +91,10 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional
     public RequestDto updateRequest(Long userId, Long requestId, RequestUpdateDto requestUpdateDto) {
         Request request = validationRequest(requestId);
         User user = validationUser(userId);
-
-        boolean hasUserRole = user.getUserRole().stream()
-                .anyMatch(role -> role.getName().equals(userRoleName));
-        if (!hasUserRole) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s) не может редактировать заявку, т.к. не является %s!",
-                            user.getName(),
-                            user.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            userRoleName));
-        }
+        validationUserRole(user);
 
         if (!request.getUser().getId().equals(userId)) {
             throw new NotFoundException(
@@ -151,6 +114,7 @@ public class RequestServiceImpl implements RequestService {
 
     //Методы для оператора
     @Override
+    @Transactional(readOnly = true)
     public List<RequestAllDto> getSippedRequests(String sort, int from, int size) {
         validateSortParameter(sort);
 
@@ -164,6 +128,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RequestDto> getRequestsByNamePart(String namePart, String sort, int from, int size) {
         validateSortParameter(sort);
 
@@ -177,6 +142,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RequestAllDto> getAcceptedRequests(String sort, int from, int size) {
         validateSortParameter(sort);
 
@@ -191,6 +157,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<RequestAllDto> getRejectedRequests(String sort, int from, int size) {
         validateSortParameter(sort);
 
@@ -204,23 +171,10 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional
     public RequestAllDto acceptRequest(Long operatorId, Long requestId) {
         Request request = validationRequest(requestId);
         User user = validationUser(operatorId);
-
-        boolean hasUserRole = user.getUserRole().stream()
-                .anyMatch(role -> role.getName().equals(operatorRoleName));
-        if (!hasUserRole) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s)не может принимать заявку, " +
-                                    "т.к. не является %s!",
-                            user.getName(),
-                            user.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            operatorRoleName));
-        }
+        validationOperatorRole(user);
 
         if (!request.getStatus().equals(RequestStatus.SHIPPED)) {
             throw new NotFoundException(
@@ -233,23 +187,10 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional
     public RequestAllDto rejectRequest(Long operatorId, Long requestId) {
         Request request = validationRequest(requestId);
         User user = validationUser(operatorId);
-
-        boolean hasUserRole = user.getUserRole().stream()
-                .anyMatch(role -> role.getName().equals(operatorRoleName));
-        if (!hasUserRole) {
-            throw new NotFoundException(
-                    String.format("Пользователь %s (роль - %s)не может отклонять заявку, " +
-                                    "т.к. не является %s!",
-                            user.getName(),
-                            user.getUserRole().stream()
-                                    .map(Role::getName)
-                                    .collect(Collectors.joining(", ")),
-                            operatorRoleName));
-        }
+        validationOperatorRole(user);
 
         if (!(request.getStatus().equals(RequestStatus.SHIPPED) ||
                 !request.getStatus().equals(RequestStatus.ACCEPTED))) {
@@ -261,6 +202,25 @@ public class RequestServiceImpl implements RequestService {
         request.setStatus(RequestStatus.REJECTED);
         return requestMapper.toRequestAllDto(requestRepository.save(request));
 
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<RequestAllDto> getAdminRequests(
+            String namePart,
+            List<RequestStatus> status,
+            String sort,
+            int from,
+            int size) {
+        validateSortParameter(sort);
+
+        Sort publishedOn = Sort.by(Sort.Direction.fromString(sort), "publishedOn");
+        PageRequestOverride pageRequest = PageRequestOverride.of(from, size, publishedOn);
+
+        List<Request> requests = requestRepository.findByStatusAndUserNamePart(namePart, status, pageRequest);
+        return requests.stream()
+                .map(requestMapper::toRequestAllDto)
+                .collect(Collectors.toList());
     }
 
     //Методы валидации переданного id
@@ -279,6 +239,37 @@ public class RequestServiceImpl implements RequestService {
     private void validateSortParameter(String sort) {
         if (!sort.equalsIgnoreCase("asc") && !sort.equalsIgnoreCase("desc")) {
             throw new IllegalArgumentException("Некорректное значение для параметра sort: " + sort);
+        }
+    }
+
+    private void validationOperatorRole(User user) {
+        boolean hasUserRole = user.getUserRole().stream()
+                .anyMatch(role -> role.getName().equals(operatorRoleName));
+        if (!hasUserRole) {
+            throw new NotFoundException(
+                    String.format("Пользователь %s (роль - %s)не может принимать заявку, " +
+                                    "т.к. не является %s!",
+                            user.getName(),
+                            user.getUserRole().stream()
+                                    .map(Role::getName)
+                                    .collect(Collectors.joining(", ")),
+                            operatorRoleName));
+        }
+    }
+
+    private void validationUserRole(User user) {
+        boolean hasUserRole = user.getUserRole()
+                .stream()
+                .anyMatch(role -> role.getName().equals(userRoleName));
+
+        if (!hasUserRole) {
+            throw new NotFoundException(
+                    String.format("Пользователь %s (роль - %s) не может создавать заявку, т.к. не является %s!",
+                            user.getName(),
+                            user.getUserRole().stream()
+                                    .map(Role::getName)
+                                    .collect(Collectors.joining(", ")),
+                            userRoleName));
         }
     }
 }

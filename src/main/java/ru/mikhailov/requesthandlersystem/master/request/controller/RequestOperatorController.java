@@ -26,7 +26,8 @@ public class RequestOperatorController {
             @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
-        log.info("URL: /request/operator/{sort}. GetMapping/Получение всех заявок/getRequest");
+        log.info("URL: /request/operator/{sort}. GetMapping/Получение всех заявок в статусе отправлено" +
+                "/getSippedRequests");
         return requestService.getSippedRequests(sort, from, size);
     }
 
@@ -39,7 +40,7 @@ public class RequestOperatorController {
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/users/{sort}. " +
-                "GetMapping/Получение всех заявок пользователя/getUserRequest");
+                "GetMapping/Получение всех заявок пользователя по имени/getRequestsByNamePart");
         return requestService.getRequestsByNamePart(namePart, sort, from, size);
     }
 
@@ -51,7 +52,7 @@ public class RequestOperatorController {
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/accept/users/{sort}. " +
-                "GetMapping/Получение всех принятых заявок/getAcceptRequest");
+                "GetMapping/Получение всех принятых заявок/getAcceptedRequests");
         return requestService.getAcceptedRequests(sort, from, size);
     }
 
@@ -63,7 +64,7 @@ public class RequestOperatorController {
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/reject/users/{sort}. " +
-                "GetMapping/Получение всех отклоненных заявок/getRejectRequest");
+                "GetMapping/Получение всех отклоненных заявок/getRejectedRequests");
         return requestService.getRejectedRequests(sort, from, size);
     }
 
