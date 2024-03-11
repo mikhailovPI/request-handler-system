@@ -66,16 +66,17 @@ public class RequestAdminController {
     }
 
     //Посмотреть заявки
-    @GetMapping(path = "/request/{sort}")
+    @GetMapping(path = "/{adminId}/{sort}")
     @PreAuthorize("hasAuthority('admin:write')")
     public List<RequestAllDto> getAdminRequests(
+            @PathVariable Long adminId,
             @RequestParam(name = "namePart", required = false, defaultValue = "") String namePart,
             @RequestParam List<RequestStatus> status,
             @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/admin/request. GetMapping/Получение админом заявок/getAdminRequests");
-        return requestService.getAdminRequests(namePart, status, sort, from, size);
+        return requestService.getAdminRequests(adminId, namePart, status, sort, from, size);
     }
 
 }

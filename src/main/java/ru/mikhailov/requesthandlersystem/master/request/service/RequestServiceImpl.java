@@ -34,6 +34,8 @@ public class RequestServiceImpl implements RequestService {
     private final UserRepository userRepository;
     private final RequestMapper requestMapper;
 
+    @Value("${role.admin}")
+    private String adminRoleName;
     @Value("${role.operator}")
     private String operatorRoleName;
     @Value("${role.user}")
@@ -207,11 +209,14 @@ public class RequestServiceImpl implements RequestService {
     @Override
     @Transactional(readOnly = true)
     public List<RequestAllDto> getAdminRequests(
+            Long adminId,
             String namePart,
             List<RequestStatus> status,
             String sort,
             int from,
             int size) {
+        User admin = validationUser(adminId);
+        validationAdminRole(admin);
         validateSortParameter(sort);
 
         Sort publishedOn = Sort.by(Sort.Direction.fromString(sort), "publishedOn");
@@ -270,6 +275,23 @@ public class RequestServiceImpl implements RequestService {
                                     .map(Role::getName)
                                     .collect(Collectors.joining(", ")),
                             userRoleName));
+        }
+    }
+
+    private void validationAdminRole(User admin) {
+        boolean isAdmin = admin.getUserRole()
+                .stream()
+                .anyMatch(role -> role.getName().equals(adminRoleName));
+        if (!isAdmin) {
+            throw new NotFoundException(
+                    String.format(
+                            "Пользователь %s (роль - %s) не может назначить новую роль пользователю, " +
+                                    "т.к. не является %s!",
+                            admin.getName(),
+                            admin.getUserRole().stream()
+                                    .map(Role::getName)
+                                    .collect(Collectors.joining(", ")),
+                            adminRoleName));
         }
     }
 }
