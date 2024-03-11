@@ -12,7 +12,7 @@ import java.util.List;
 public interface RequestService {
 
     //Методы для пользователя
-    List<RequestDto> getRequestsByUser(Long userId, Integer sort, int from, int size);
+    List<RequestDto> getRequestsByUser(Long userId, String sort, int from, int size);
 
     RequestAllDto createRequest(RequestNewDto request, Long userId);
 
@@ -21,13 +21,13 @@ public interface RequestService {
     RequestDto updateRequest(Long userId, Long requestId, RequestUpdateDto requestUprateDto);
 
     //Методы для оператора
-    List<RequestAllDto> getRequests(Integer sort, int from, int size);
+    List<RequestAllDto> getSippedRequests(String sort, int from, int size);
 
-    List<RequestDto> getUserRequest(String namePart, Integer sort, int from, int size);
+    List<RequestDto> getRequestsByNamePart(String namePart, String sort, int from, int size);
 
-    List<RequestAllDto> getAcceptRequest(Integer sort, int from, int size);
+    List<RequestAllDto> getAcceptedRequests(String sort, int from, int size);
 
-    List<RequestAllDto> getRejectRequest(Integer sort, int from, int size);
+    List<RequestAllDto> getRejectedRequests(String sort, int from, int size);
 
     RequestAllDto acceptRequest(Long operatorId, Long requestId);
 

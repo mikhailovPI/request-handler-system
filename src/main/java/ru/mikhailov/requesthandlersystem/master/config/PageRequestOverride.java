@@ -16,6 +16,10 @@ public class PageRequestOverride extends PageRequest {
         return new PageRequestOverride(from, size, Sort.unsorted());
     }
 
+    public static PageRequestOverride of(int from, int size,Sort sort) {
+        return new PageRequestOverride(from, size, sort);
+    }
+
     @Override
     public long getOffset() {
         return from;

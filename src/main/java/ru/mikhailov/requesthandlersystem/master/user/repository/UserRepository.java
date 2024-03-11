@@ -12,9 +12,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     boolean existsByEmail(String email);
 
-    @Query("select u.email from User u")
-    List<String> findByNameOrderByEmail();
-
     Optional<User> findByEmail(String email);
 
     @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE CONCAT('%', LOWER(:namePart), '%') ORDER BY u.id ASC")

@@ -22,49 +22,49 @@ public class RequestOperatorController {
     //Получение всех заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/{sort}")
     @PreAuthorize("hasAuthority('operator:write')")
-    public List<RequestAllDto> getRequests(
-            @PathVariable Integer sort,
+    public List<RequestAllDto> getSippedRequests(
+            @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/{sort}. GetMapping/Получение всех заявок/getRequest");
-        return requestService.getRequests(sort, from, size);
+        return requestService.getSippedRequests(sort, from, size);
     }
 
     //Получение всех заявок пользователя по его имени с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/users/{sort}")
     @PreAuthorize("hasAuthority('operator:write')")
-    public List<RequestDto> getUserRequest(
+    public List<RequestDto> getRequestsByNamePart(
             @RequestParam String namePart,
-            @PathVariable Integer sort,
+            @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/users/{sort}. " +
                 "GetMapping/Получение всех заявок пользователя/getUserRequest");
-        return requestService.getUserRequest(namePart, sort, from, size);
+        return requestService.getRequestsByNamePart(namePart, sort, from, size);
     }
 
     //Получение всех принятых заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/accept/users/{sort}")
     @PreAuthorize("hasAuthority('operator:write')")
-    public List<RequestAllDto> getAcceptRequest(
-            @PathVariable Integer sort,
+    public List<RequestAllDto> getAcceptedRequests(
+            @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/accept/users/{sort}. " +
                 "GetMapping/Получение всех принятых заявок/getAcceptRequest");
-        return requestService.getAcceptRequest(sort, from, size);
+        return requestService.getAcceptedRequests(sort, from, size);
     }
 
     //Получение всех отклоненных заявок с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/reject/users/{sort}")
     @PreAuthorize("hasAuthority('operator:write')")
-    public List<RequestAllDto> getRejectRequest(
-            @PathVariable Integer sort,
+    public List<RequestAllDto> getRejectedRequests(
+            @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/operator/reject/users/{sort}. " +
                 "GetMapping/Получение всех отклоненных заявок/getRejectRequest");
-        return requestService.getRejectRequest(sort, from, size);
+        return requestService.getRejectedRequests(sort, from, size);
     }
 
     //Принятие заявки

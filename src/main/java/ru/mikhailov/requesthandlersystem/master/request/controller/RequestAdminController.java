@@ -33,10 +33,10 @@ public class RequestAdminController {
     //Поиск пользователя по имени
     @GetMapping(path = "/user")
     @PreAuthorize("hasAuthority('admin:write')")
-    public UserAdminDto getUserByName(
+    public UserAdminDto getUserByNamePart(
             @RequestParam(name = "namePart", required = false) String namePart) {
         log.info("URL: /request/admin/user. GetMapping/Поиск пользователя по имени/getUserByName");
-        return userService.getUserByName(namePart);
+        return userService.getUserByNamePart(namePart);
     }
 
     //Назначение прав оператора

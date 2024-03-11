@@ -26,7 +26,7 @@ public class RequestUserController {
     @PreAuthorize("hasAuthority('user:write')")
     public List<RequestDto> getRequestsByUser(
             @PathVariable Long userId,
-            @PathVariable Integer sort,
+            @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/users/{userId}. GetMapping/Просмотр всех заявок пользователя/createRequest");

@@ -94,7 +94,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserAdminDto getUserByName(String namePart) {
+    public UserAdminDto getUserByNamePart(String namePart) {
         return userMapper.toUserAdminDto(userRepository.findFirstUserByNamePart(namePart));
     }
 
