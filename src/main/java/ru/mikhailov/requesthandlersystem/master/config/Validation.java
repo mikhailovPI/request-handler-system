@@ -2,12 +2,8 @@ package ru.mikhailov.requesthandlersystem.master.config;
 
 
 import org.springframework.beans.factory.annotation.Value;
-import ru.mikhailov.requesthandlersystem.master.exception.NotFoundException;
-import ru.mikhailov.requesthandlersystem.master.exception.ValidationException;
-import ru.mikhailov.requesthandlersystem.master.user.model.Role;
+import ru.mikhailov.requesthandlersystem.exception.ValidationException;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
-
-import java.util.stream.Collectors;
 
 public class Validation {
 

@@ -1,4 +1,4 @@
-package ru.mikhailov.requesthandlersystem.master.exception;
+package ru.mikhailov.requesthandlersystem.exception;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,25 +1,24 @@
-/*
-package ru.mikhailov.requesthandlersystem.security;
+package ru.mikhailov.requesthandlersystem.security.config;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.GenericFilterBean;
+import ru.mikhailov.requesthandlersystem.exception.JwtAuthenticationException;
+import ru.mikhailov.requesthandlersystem.exception.UnauthorizedException;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import java.io.IOException;
 
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class JwtTokenFilter extends GenericFilterBean {
+
     private final JwtTokenProvider jwtTokenProvider;
 
     @Override
@@ -32,18 +31,14 @@ public class JwtTokenFilter extends GenericFilterBean {
         try {
             if (token != null && jwtTokenProvider.validateToken(token)) {
                 Authentication authentication = jwtTokenProvider.getAuthentication(token);
-
                 if (authentication != null) {
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
         } catch (JwtAuthenticationException e) {
             SecurityContextHolder.clearContext();
-            ((HttpServletResponse) servletResponse).sendError(e.getHttpStatus().value());
-            throw new UnauthorizedException(ExceptionMessage.NOT_VALID_TOKEN.label);
+            throw new UnauthorizedException("JWT Token просрочен или недействителен!");
         }
-
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }
-*/

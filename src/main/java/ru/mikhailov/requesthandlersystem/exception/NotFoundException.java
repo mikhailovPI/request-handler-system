@@ -1,4 +1,4 @@
-package ru.mikhailov.requesthandlersystem.master.exception;
+package ru.mikhailov.requesthandlersystem.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import ru.mikhailov.requesthandlersystem.master.exception.NotFoundException;
+import ru.mikhailov.requesthandlersystem.exception.NotFoundException;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
 import ru.mikhailov.requesthandlersystem.master.user.repository.UserRepository;
 import ru.mikhailov.requesthandlersystem.security.model.UserSecurity;

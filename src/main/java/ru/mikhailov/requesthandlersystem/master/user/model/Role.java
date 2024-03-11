@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import ru.mikhailov.requesthandlersystem.security.config.Permission;
+import ru.mikhailov.requesthandlersystem.security.model.Permission;
 
 import javax.persistence.*;
 import java.util.EnumSet;

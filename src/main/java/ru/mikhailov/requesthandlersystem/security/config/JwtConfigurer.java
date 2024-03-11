@@ -1,5 +1,4 @@
-/*
-package ru.mikhailov.requesthandlersystem.security;
+package ru.mikhailov.requesthandlersystem.security.config;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity> {
+
     private final JwtTokenFilter jwtTokenFilter;
 
     @Override
@@ -18,4 +18,3 @@ public class JwtConfigurer extends SecurityConfigurerAdapter<DefaultSecurityFilt
         httpSecurity.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
 }
-*/

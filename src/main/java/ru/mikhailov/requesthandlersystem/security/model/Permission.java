@@ -1,4 +1,4 @@
-package ru.mikhailov.requesthandlersystem.security.config;
+package ru.mikhailov.requesthandlersystem.security.model;
 
 public enum Permission {
     USER("user:write"),

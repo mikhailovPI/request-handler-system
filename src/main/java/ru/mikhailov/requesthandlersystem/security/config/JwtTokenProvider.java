@@ -1,53 +1,54 @@
-/*
-package ru.mikhailov.requesthandlersystem.security;
+package ru.mikhailov.requesthandlersystem.security.config;
 
 import io.jsonwebtoken.*;
-import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import ru.mikhailov.requesthandlersystem.exception.JwtAuthenticationException;
 
-import java.nio.charset.StandardCharsets;
+import javax.annotation.PostConstruct;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
+import java.util.List;
 
 @Component
-@PropertySource(value = {"classpath:application.properties"})
+
 public class JwtTokenProvider {
-    private final UserDetailsService service;
+
+    private final UserDetailsService userDetailsService;
+
     @Value("${jwt.secret}")
     private String secret;
     @Value("${jwt.header}")
-    private String authHeader;
+    private String authorizationHeader;
     @Value("${jwt.lifetime}")
     private Duration jwtLifetime;
 
     public JwtTokenProvider(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService) {
-        this.service = userDetailsService;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostConstruct
     protected void init() {
-        secret = Base64.getEncoder().encodeToString(secret.getBytes(StandardCharsets.UTF_8));
+        secret = Base64.getEncoder().encodeToString(secret.getBytes());
     }
 
-    public String generateToken(String username, String role) {
+    public String createToken(String username, List<String> roles) {
         Claims claims = Jwts.claims().setSubject(username);
-        claims.put("role", role);
-        Date issuedDate = new Date();
-        Date expiredDate = new Date(issuedDate.getTime() + jwtLifetime.toMillis());
+        claims.put("roles", roles);
+        Date now = new Date();
+        Date validity = new Date(now.getTime() + jwtLifetime.toMillis());
 
         return Jwts.builder()
                 .setClaims(claims)
-                .setIssuedAt(issuedDate)
-                .setExpiration(expiredDate)
+                .setIssuedAt(now)
+                .setExpiration(validity)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
     }
@@ -57,22 +58,32 @@ public class JwtTokenProvider {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtAuthenticationException(ExceptionMessage.TIMEOUT_TOKEN.label, HttpStatus.UNAUTHORIZED);
+            throw new JwtAuthenticationException("JWT Token просрочен или недействителен!");
         }
     }
 
     public Authentication getAuthentication(String token) {
-        UserDetails userDetails = service.loadUserByUsername(getUsername(token));
-        return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
+        UserDetails userDetails = this.userDetailsService.loadUserByUsername(getUsername(token));
+        return
+                new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        "",
+                        userDetails.getAuthorities());
     }
 
     public String getUsername(String token) {
-        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
+        return Jwts
+                .parser()
+                .setSigningKey(secret)
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
     }
 
     public String resolveToken(HttpServletRequest request) {
-        return request.getHeader(authHeader);
+        return request
+                .getHeader(authorizationHeader);
     }
 
+
 }
-*/

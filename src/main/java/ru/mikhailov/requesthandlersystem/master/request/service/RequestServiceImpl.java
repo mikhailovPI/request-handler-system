@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
-import ru.mikhailov.requesthandlersystem.master.exception.NotFoundException;
+import ru.mikhailov.requesthandlersystem.exception.NotFoundException;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestNewDto;
