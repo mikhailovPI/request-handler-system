@@ -193,11 +193,8 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(operatorId);
         validationOperatorRole(user);
 
-        boolean a = request.getStatus().equals(RequestStatus.SHIPPED);
-        boolean b = request.getStatus().equals(RequestStatus.ACCEPTED);
-
-        if (!(a ||
-                b)) {
+        if (!(request.getStatus().equals(RequestStatus.SHIPPED) ||
+        request.getStatus().equals(RequestStatus.ACCEPTED))) {
             throw new NotFoundException(
                     String.format("Заявка не имеет статус %s или %s!",
                             RequestStatus.SHIPPED,
@@ -212,7 +209,7 @@ public class RequestServiceImpl implements RequestService {
     public List<RequestAllDto> getAdminRequests(
             Long adminId,
             String namePart,
-            List<RequestStatus> status,
+            List<RequestStatus> statuses,
             String sort,
             int from,
             int size) {
@@ -223,7 +220,7 @@ public class RequestServiceImpl implements RequestService {
         Sort publishedOn = Sort.by(Sort.Direction.fromString(sort), "publishedOn");
         PageRequestOverride pageRequest = PageRequestOverride.of(from, size, publishedOn);
 
-        List<Request> requests = requestRepository.findByStatusAndUserNamePart(namePart, status, pageRequest);
+        List<Request> requests = requestRepository.findByStatusAndUserNamePart(namePart, statuses, pageRequest);
         return requests.stream()
                 .map(requestMapper::toRequestAllDto)
                 .collect(Collectors.toList());

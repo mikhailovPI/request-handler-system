@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "a53fac88-9952-439d-bc88-9ffdda40b657",
-		"name": "ClaimRegistrar",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_postman_id": "b4d2f0e7-56bb-49b6-91e8-c2e87e282d31",
+		"name": "request-handler-system",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21599406",
-		"_collection_link": "https://universal-rocket-498870.postman.co/workspace/Team-Workspace~075702bc-79a9-424e-8188-284e8c4fdb15/collection/21599406-a53fac88-9952-439d-bc88-9ffdda40b657?action=share&creator=21599406&source=collection_link"
+		"_collection_link": "https://universal-rocket-498870.postman.co/workspace/Team-Workspace~075702bc-79a9-424e-8188-284e8c4fdb15/collection/21599406-b4d2f0e7-56bb-49b6-91e8-c2e87e282d31?action=share&source=collection_link&creator=21599406"
 	},
 	"item": [
 		{
@@ -29,23 +29,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Tatiana\",\r\n  \"password\": \"1111\",\r\n  \"email\": \"1111@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n  ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Tatiana\",\r\n  \"password\": \"1111\",\r\n  \"email\": \"1111@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n  ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -68,23 +86,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Gaga\",\r\n  \"password\": \"2222\",\r\n  \"email\": \"2222@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"OPERATOR\"\r\n      },\r\n      {\r\n          \"name\": \"ADMIN\"\r\n      }\r\n  ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Gaga\",\r\n  \"password\": \"2222\",\r\n  \"email\": \"2222@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"OPERATOR\"\r\n      },\r\n      {\r\n          \"name\": \"ADMIN\"\r\n      }\r\n  ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -107,23 +143,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Pavel\",\r\n  \"password\": \"3333\",\r\n  \"email\": \"3333@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Pavel\",\r\n  \"password\": \"3333\",\r\n  \"email\": \"3333@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -146,23 +200,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Nikola\",\r\n  \"password\": \"4444\",\r\n  \"email\": \"4444@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"ADMIN\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Nikola\",\r\n  \"password\": \"4444\",\r\n  \"email\": \"4444@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"ADMIN\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -185,23 +257,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Gena\",\r\n  \"password\": \"5555\",\r\n  \"email\": \"5555@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"OPERATOR\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Gena\",\r\n  \"password\": \"5555\",\r\n  \"email\": \"5555@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"OPERATOR\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -224,23 +314,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Lutik\",\r\n  \"password\": \"6666\",\r\n  \"email\": \"6666@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Lutik\",\r\n  \"password\": \"6666\",\r\n  \"email\": \"6666@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -263,23 +371,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Andy\",\r\n  \"password\": \"7777\",\r\n  \"email\": \"7777@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Andy\",\r\n  \"password\": \"7777\",\r\n  \"email\": \"7777@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -302,23 +428,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Elton\",\r\n  \"password\": \"8888\",\r\n  \"email\": \"8888@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Elton\",\r\n  \"password\": \"8888\",\r\n  \"email\": \"8888@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -341,23 +485,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Sergio\",\r\n  \"password\": \"9999\",\r\n  \"email\": \"9999@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Sergio\",\r\n  \"password\": \"9999\",\r\n  \"email\": \"9999@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -380,23 +542,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Kant\",\r\n  \"password\": \"1010\",\r\n  \"email\": \"1010@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Kant\",\r\n  \"password\": \"1010\",\r\n  \"email\": \"1010@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"USER\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -419,23 +599,41 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Kanat\",\r\n  \"password\": \"11011\",\r\n  \"email\": \"11011@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"EXECUTOR\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Kanat\",\r\n  \"password\": \"11011\",\r\n  \"email\": \"11011@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"ADMIN\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -458,23 +656,634 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"Uni\",\r\n  \"password\": \"1212\",\r\n  \"email\": \"1212@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"EXECUTOR\"\r\n      }\r\n    ]\r\n}",
+							"raw": "{\r\n  \"name\": \"Uni\",\r\n  \"password\": \"1212\",\r\n  \"email\": \"1212@mail.ru\",\r\n  \"userRole\": [\r\n      {\r\n          \"name\": \"OPERATOR\"\r\n      }\r\n    ],\r\n  \"status\" : \"ACTIVE\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Авторизация user-1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_1\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"1111@mail.ru\",\r\n    \"password\": \"1111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_2\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"2222@mail.ru\",\r\n    \"password\": \"2222\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_3\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"3333@mail.ru\",\r\n    \"password\": \"3333\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_4\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"4444@mail.ru\",\r\n    \"password\": \"4444\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_5\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"5555@mail.ru\",\r\n    \"password\": \"5555\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_6\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"6666@mail.ru\",\r\n    \"password\": \"6666\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-7",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_7\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"7777@mail.ru\",\r\n    \"password\": \"7777\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-8",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_8\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"8888@mail.ru\",\r\n    \"password\": \"8888\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-9",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_9\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"9999@mail.ru\",\r\n    \"password\": \"9999\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-10",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_10\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"1010@mail.ru\",\r\n    \"password\": \"1010\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_11\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"11011@mail.ru\",\r\n    \"password\": \"11011\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Авторизация user-12",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"auth_token_user_12\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"1212@mail.ru\",\r\n    \"password\": \"1212\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
 					},
 					"response": []
 				}
@@ -501,11 +1310,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1111",
-								"username": "1111@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -515,8 +1320,14 @@
 								"type": "text"
 							},
 							{
+								"key": "Accept",
+								"value": "*/*",
+								"type": "text",
+								"disabled": true
+							},
+							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{auth_token_user_1}}",
 								"type": "text"
 							}
 						],
@@ -530,11 +1341,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -565,14 +1380,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"А этот запрос все также от пользователя 1 и он очень классный!\"\r\n}",
@@ -583,11 +1400,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -621,14 +1442,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -639,11 +1462,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/users/:userId/:sort?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								":sort"
 							],
@@ -664,7 +1491,7 @@
 								},
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -692,14 +1519,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -710,11 +1539,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/users/:userId/:sort?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								":sort"
 							],
@@ -735,7 +1568,7 @@
 								},
 								{
 									"key": "sort",
-									"value": "0"
+									"value": "desc"
 								}
 							]
 						}
@@ -760,14 +1593,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -778,11 +1613,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -819,14 +1658,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"text\": \"Запрос от пользователя 1 и он решил обновить текст!\"\r\n}",
@@ -837,11 +1678,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/update/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/update/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								"update",
 								":userId",
 								"request",
@@ -879,14 +1724,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -897,11 +1744,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -938,14 +1789,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "3333",
-								"username": "3333@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_3}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Запрос от пользователя 3 и он очень важен!\"\r\n}",
@@ -956,11 +1809,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -991,14 +1848,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "6666@mail.ru",
-								"password": "6666"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_6}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Запрос от пользователя 6 и он очень важен!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1009,11 +1868,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1047,14 +1910,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1065,11 +1930,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/users/:userId/:sort?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								":sort"
 							],
@@ -1090,7 +1959,7 @@
 								},
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -1115,14 +1984,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_3}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1133,11 +2004,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -1174,14 +2049,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "3333",
-								"username": "3333@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_3}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Запрос от пользователя 3 и очень классный!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1192,11 +2069,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1227,14 +2108,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "8888",
-								"username": "8888@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_8}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Запрос от пользователя 8 и очень классный!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1245,11 +2128,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1280,14 +2167,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "8888",
-								"username": "8888@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_8}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1298,11 +2187,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -1339,14 +2232,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "8888",
-								"username": "8888@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_8}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Второй запрос от пользователя 8 и он очень классный!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1357,11 +2252,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1392,14 +2291,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "8888",
-								"username": "8888@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_8}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1410,11 +2311,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -1451,14 +2356,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1111",
-								"username": "1111@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Третий запрос от пользователя 1 и он очень классный!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1469,11 +2376,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1504,14 +2415,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1010",
-								"username": "1010@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_1}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1522,11 +2435,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -1563,14 +2480,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1010",
-								"username": "1010@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_10}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"text\": \"Запрос от пользователя 10 и он очень классный!\",\r\n  \"status\": \"ЧЕРНОВИК\"\r\n}",
@@ -1581,11 +2500,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -1616,14 +2539,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1010",
-								"username": "1010@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_10}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1634,11 +2559,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								"request",
 								":requestId"
@@ -1678,14 +2607,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "3333",
-								"username": "3333@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_3}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1696,11 +2627,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/users/:userId/:sort?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId",
 								":sort"
 							],
@@ -1721,7 +2656,7 @@
 								},
 								{
 									"key": "sort",
-									"value": "0"
+									"value": "desc"
 								}
 							]
 						}
@@ -1754,14 +2689,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1772,11 +2709,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:sort?from=0&size=10",
+							"raw": "http://localhost:8080/request/operator/:sort?from=0&size=10",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":sort"
 							],
 							"query": [
@@ -1792,7 +2733,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -1820,14 +2761,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "5555@mail.ru",
-								"password": "5555"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_12}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1838,11 +2782,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/users/:sort?namePart=tAtiAnA&from=0&size=5",
+							"raw": "http://localhost:8080/request/operator/users/:sort?namePart=tAtiAnA&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								"users",
 								":sort"
 							],
@@ -1863,7 +2811,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -1891,14 +2839,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "5555@mail.ru",
-								"password": "5555"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_12}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1909,11 +2860,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/users/:sort?namePart=vel&from=0&size=5",
+							"raw": "http://localhost:8080/request/operator/users/:sort?namePart=vel&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								"users",
 								":sort"
 							],
@@ -1934,7 +2889,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -1959,14 +2914,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -1977,11 +2935,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/accept/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/accept/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"accept",
 								":requestId"
@@ -2018,14 +2980,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2036,11 +3001,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/accept/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/accept/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"accept",
 								":requestId"
@@ -2077,14 +3046,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2095,11 +3067,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/accept/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/accept/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"accept",
 								":requestId"
@@ -2136,14 +3112,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2154,11 +3133,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/reject/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/reject/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"reject",
 								":requestId"
@@ -2195,14 +3178,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2213,11 +3199,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/reject/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/reject/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"reject",
 								":requestId"
@@ -2254,14 +3244,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2272,11 +3265,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/reject/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/reject/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"reject",
 								":requestId"
@@ -2316,14 +3313,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2334,11 +3333,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/operator/:sort?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":sort"
 							],
 							"query": [
@@ -2354,7 +3357,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "desc"
 								}
 							]
 						}
@@ -2382,14 +3385,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2400,11 +3406,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/accept/users/:sort?from=0&size=10",
+							"raw": "http://localhost:8080/request/operator/accept/users/:sort?from=0&size=10",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								"accept",
 								"users",
 								":sort"
@@ -2422,7 +3432,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
 								}
 							]
 						}
@@ -2450,14 +3460,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2468,11 +3481,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/reject/users/:sort?from=0&size=10",
+							"raw": "http://localhost:8080/request/operator/reject/users/:sort?from=0&size=10",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								"reject",
 								"users",
 								":sort"
@@ -2490,7 +3507,7 @@
 							"variable": [
 								{
 									"key": "sort",
-									"value": "1"
+									"value": "desc"
 								}
 							]
 						}
@@ -2523,14 +3540,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2541,11 +3560,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/users?from=0&size=10",
+							"raw": "http://localhost:8080/request/admin/:adminId/users?from=0&size=10",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"users"
 							],
@@ -2590,14 +3613,16 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2608,11 +3633,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/user?namePart=Tatiana&from=0&size=5",
+							"raw": "http://localhost:8080/request/admin/user?namePart=Tatiana&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								"user"
 							],
 							"query": [
@@ -2654,14 +3683,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2672,11 +3704,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/user/?namePart=iana&from=0&size=5",
+							"raw": "http://localhost:8080/request/admin/user/?namePart=iana&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								"user",
 								""
 							],
@@ -2716,14 +3752,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2734,11 +3773,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/user/:userId",
+							"raw": "http://localhost:8080/request/admin/:adminId/user/:userId",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"user",
 								":userId"
@@ -2778,14 +3821,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2796,11 +3842,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/user?namePart=Tatiana&from=0&size=5",
+							"raw": "http://localhost:8080/request/admin/user?namePart=Tatiana&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								"user"
 							],
 							"query": [
@@ -2839,14 +3889,17 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "DELETE",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2857,11 +3910,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/user/:userId",
+							"raw": "http://localhost:8080/request/admin/:adminId/user/:userId",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"user",
 								":userId"
@@ -2879,73 +3936,9 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Request executor endpoint",
-			"item": [
-				{
-					"name": "Выполнение заявки 8 Executor 12",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"\r",
-									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{executor_url_r}}/:executorId/request/:requestId",
-							"host": [
-								"{{executor_url_r}}"
-							],
-							"path": [
-								":executorId",
-								"request",
-								":requestId"
-							],
-							"variable": [
-								{
-									"key": "executorId",
-									"value": "12"
-								},
-								{
-									"key": "requestId",
-									"value": "8"
-								}
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "Получение всех выполненных заявок",
+					"name": "Поиск заявки по имени и статусу Admin 2",
 					"event": [
 						{
 							"listen": "test",
@@ -2965,14 +3958,17 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1212",
-								"username": "1212@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
-						"header": [],
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -2983,15 +3979,31 @@
 							}
 						},
 						"url": {
-							"raw": "{{executor_url_r}}/done/:sort?from=0&size=5",
+							"raw": "http://localhost:8080/request/admin/:adminId/:sort?namePart=Tatiana&statuses=DRAFT&statuses=SHIPPED&from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{executor_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"done",
+								"request",
+								"admin",
+								":adminId",
 								":sort"
 							],
 							"query": [
+								{
+									"key": "namePart",
+									"value": "Tatiana"
+								},
+								{
+									"key": "statuses",
+									"value": "DRAFT"
+								},
+								{
+									"key": "statuses",
+									"value": "SHIPPED"
+								},
 								{
 									"key": "from",
 									"value": "0"
@@ -3003,8 +4015,103 @@
 							],
 							"variable": [
 								{
+									"key": "adminId",
+									"value": "2"
+								},
+								{
 									"key": "sort",
-									"value": "1"
+									"value": "asc"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Поиск заявки по статусу Admin 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status test\", function () {\r",
+									"pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"warning": "This is a duplicate header and will be overridden by the Authorization header generated by Postman.",
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/request/admin/:adminId/:sort?statuses=DRAFT&statuses=SHIPPED&from=0&size=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"request",
+								"admin",
+								":adminId",
+								":sort"
+							],
+							"query": [
+								{
+									"key": "namePart",
+									"value": "Tatiana",
+									"disabled": true
+								},
+								{
+									"key": "statuses",
+									"value": "DRAFT"
+								},
+								{
+									"key": "statuses",
+									"value": "SHIPPED"
+								},
+								{
+									"key": "from",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "5"
+								}
+							],
+							"variable": [
+								{
+									"key": "adminId",
+									"value": "2"
+								},
+								{
+									"key": "sort",
+									"value": "asc"
 								}
 							]
 						}
@@ -3035,10 +4142,18 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -3051,7 +4166,17 @@
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3074,10 +4199,18 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -3090,7 +4223,17 @@
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3113,10 +4256,18 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -3129,7 +4280,17 @@
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3152,10 +4313,18 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "dsds",
-								"username": "dsds"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "dsds",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "dsds",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
@@ -3168,7 +4337,17 @@
 								}
 							}
 						},
-						"url": "{{user_url_create}}"
+						"url": {
+							"raw": "http://localhost:8080/registration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"registration"
+							]
+						}
 					},
 					"response": []
 				},
@@ -3181,7 +4360,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3190,11 +4369,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
 						"header": [],
@@ -3208,11 +4383,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/update/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/update/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								"update",
 								":userId",
 								"request",
@@ -3241,7 +4420,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3250,11 +4429,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
 						"header": [],
@@ -3268,11 +4443,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/accept/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/accept/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"accept",
 								":requestId"
@@ -3300,7 +4479,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3309,11 +4488,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
 						"header": [],
@@ -3327,11 +4502,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/reject/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/reject/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"reject",
 								":requestId"
@@ -3359,7 +4538,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3371,11 +4550,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -3389,11 +4564,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/users?from=0&size=5",
+							"raw": "http://localhost:8080/request/admin/:adminId/users?from=0&size=5",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"users"
 							],
@@ -3426,7 +4605,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3435,11 +4614,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
 						"header": [],
@@ -3453,11 +4628,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/user/:userId",
+							"raw": "http://localhost:8080/request/admin/:adminId/user/:userId",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"user",
 								":userId"
@@ -3465,7 +4644,7 @@
 							"variable": [
 								{
 									"key": "adminId",
-									"value": "1"
+									"value": ""
 								},
 								{
 									"key": "userId",
@@ -3485,7 +4664,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3494,11 +4673,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1111",
-								"username": "1111@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -3509,7 +4684,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{auth_token_user_2}}",
 								"type": "text"
 							}
 						],
@@ -3523,11 +4698,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -3549,7 +4728,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3558,14 +4737,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_2}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"text\": \"Запрос от пользователя 2 и он решил обновить текст!\"\r\n}",
@@ -3576,11 +4757,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/update/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/update/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								"update",
 								":userId",
 								"request",
@@ -3609,7 +4794,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3618,14 +4803,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "4444",
-								"username": "4444@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_5}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -3636,11 +4823,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{admin_url_r}}/:adminId/user/:userId",
+							"raw": "http://localhost:8080/request/admin/:adminId/user/:userId",
+							"protocol": "http",
 							"host": [
-								"{{admin_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"admin",
 								":adminId",
 								"user",
 								":userId"
@@ -3660,65 +4851,6 @@
 					"response": []
 				},
 				{
-					"name": "Выполнение заявки 1 Executor 12",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"\r",
-									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{executor_url_r}}/:executorId/request/:requestId",
-							"host": [
-								"{{executor_url_r}}"
-							],
-							"path": [
-								":executorId",
-								"request",
-								":requestId"
-							],
-							"variable": [
-								{
-									"key": "executorId",
-									"value": "12"
-								},
-								{
-									"key": "requestId",
-									"value": "1"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "Создание запроса 6 от Admin 4",
 					"event": [
 						{
@@ -3727,7 +4859,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3736,11 +4868,7 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "1111",
-								"username": "1111@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [
@@ -3751,7 +4879,7 @@
 							},
 							{
 								"key": "Authorization",
-								"value": "",
+								"value": "{{auth_token_user_4}}",
 								"type": "text"
 							}
 						],
@@ -3765,11 +4893,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/:userId",
+							"raw": "http://localhost:8080/request/users/:userId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								":userId"
 							],
 							"variable": [
@@ -3791,7 +4923,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3800,14 +4932,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"username": "1111@mail.ru",
-								"password": "1111"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"text\": \"Запрос от пользователя 2 и он решил обновить текст!\"\r\n}",
@@ -3818,11 +4952,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url_r}}/update/:userId/request/:requestId",
+							"raw": "http://localhost:8080/request/users/update/:userId/request/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{user_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"users",
 								"update",
 								":userId",
 								"request",
@@ -3851,7 +4989,7 @@
 								"exec": [
 									"\r",
 									"pm.test(\"Status test\", function () {\r",
-									"pm.response.to.have.status(404);\r",
+									"pm.response.to.have.status(403);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -3860,14 +4998,16 @@
 					],
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"type": "noauth"
 						},
 						"method": "PATCH",
-						"header": [],
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth_token_user_4}}",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "",
@@ -3878,11 +5018,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/accept/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/accept/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"accept",
 								":requestId"
@@ -3906,10 +5050,18 @@
 					"request": {
 						"auth": {
 							"type": "basic",
-							"basic": {
-								"password": "5555",
-								"username": "5555@mail.ru"
-							}
+							"basic": [
+								{
+									"key": "password",
+									"value": "5555",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "5555@mail.ru",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -3923,11 +5075,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{operator_url_r}}/:operatorId/reject/:requestId",
+							"raw": "http://localhost:8080/request/operator/:operatorId/reject/:requestId",
+							"protocol": "http",
 							"host": [
-								"{{operator_url_r}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"request",
+								"operator",
 								":operatorId",
 								"reject",
 								":requestId"

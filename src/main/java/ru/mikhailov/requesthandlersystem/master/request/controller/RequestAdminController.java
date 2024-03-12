@@ -71,11 +71,11 @@ public class RequestAdminController {
     public List<RequestAllDto> getAdminRequests(
             @PathVariable Long adminId,
             @RequestParam(name = "namePart", required = false, defaultValue = "") String namePart,
-            @RequestParam List<RequestStatus> status,
+            @RequestParam List<RequestStatus> statuses,
             @PathVariable String sort,
             @RequestParam(name = "from", defaultValue = "0") int from,
             @RequestParam(name = "size", defaultValue = "5") int size) {
         log.info("URL: /request/admin/request. GetMapping/Получение админом заявок/getAdminRequests");
-        return requestService.getAdminRequests(adminId, namePart, status, sort, from, size);
+        return requestService.getAdminRequests(adminId, namePart, statuses, sort, from, size);
     }
 }

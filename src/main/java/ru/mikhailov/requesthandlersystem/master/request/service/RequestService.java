@@ -36,7 +36,7 @@ public interface RequestService {
 
     List<RequestAllDto> getAdminRequests(Long adminId,
                                          String namePart,
-                                         List<RequestStatus> status,
+                                         List<RequestStatus> statuses,
                                          String sort,
                                          int from,
                                          int size);

@@ -35,6 +35,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
     @Query("SELECT r FROM Request r " +
             "WHERE r.status IN :statuses AND LOWER(r.user.name) LIKE LOWER(CONCAT('%', :namePart, '%'))")
     List<Request> findByStatusAndUserNamePart(@Param("namePart") String namePart,
-                                              @Param("status") List<RequestStatus> statuses,
+                                              @Param("statuses") List<RequestStatus> statuses,
                                               PageRequestOverride pageable);
 }
