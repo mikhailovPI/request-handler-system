@@ -1,9 +1,9 @@
 package ru.mikhailov.requesthandlersystem.security.config;
 
 import io.jsonwebtoken.*;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,13 +12,14 @@ import org.springframework.stereotype.Component;
 import ru.mikhailov.requesthandlersystem.exception.JwtAuthenticationException;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.time.Duration;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
 
 @Component
-
+@PropertySource(value = {"classpath:application.properties"})
 public class JwtTokenProvider {
 
     private final UserDetailsService userDetailsService;
@@ -58,7 +59,8 @@ public class JwtTokenProvider {
             Jws<Claims> claimsJws = Jwts.parser().setSigningKey(secret).parseClaimsJws(token);
             return !claimsJws.getBody().getExpiration().before(new Date());
         } catch (JwtException | IllegalArgumentException e) {
-            throw new JwtAuthenticationException("JWT Token просрочен или недействителен!");
+            throw new JwtAuthenticationException(
+                    "JWT Token просрочен или недействителен!");
         }
     }
 

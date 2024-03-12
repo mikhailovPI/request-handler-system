@@ -1,7 +1,6 @@
 package ru.mikhailov.requesthandlersystem.security.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,11 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mikhailov.requesthandlersystem.exception.NotFoundException;
+import ru.mikhailov.requesthandlersystem.master.user.model.Role;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
 import ru.mikhailov.requesthandlersystem.master.user.repository.UserRepository;
 import ru.mikhailov.requesthandlersystem.security.config.JwtTokenProvider;
 import ru.mikhailov.requesthandlersystem.security.dto.JwtAuthRequestDto;
-import ru.mikhailov.requesthandlersystem.master.user.model.Role;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,6 +76,4 @@ public class AuthController {
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();
         securityContextLogoutHandler.logout(request, response, null);
     }
-
-
 }

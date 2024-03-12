@@ -34,6 +34,10 @@ public interface RequestService {
 
     RequestAllDto rejectRequest(Long operatorId, Long requestId);
 
-    List<RequestAllDto> getAdminRequests(Long adminId, String namePart, List<RequestStatus> status,
-                                            String sort, int from, int size);
+    List<RequestAllDto> getAdminRequests(Long adminId,
+                                         String namePart,
+                                         List<RequestStatus> status,
+                                         String sort,
+                                         int from,
+                                         int size);
 }

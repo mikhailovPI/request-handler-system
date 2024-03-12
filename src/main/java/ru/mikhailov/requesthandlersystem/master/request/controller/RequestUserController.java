@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class RequestUserController {
 
-    public final static String URL_USER = "/request/users";
+    public static final String URL_USER = "/request/users";
     private final RequestService requestService;
 
     //Просмотр заявок пользователя с возможностью сортировки по дате и пагинацией

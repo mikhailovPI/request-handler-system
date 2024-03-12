@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class RequestAdminController {
 
-    public final static String URL_ADMIN = "/request/admin";
+    public static final String URL_ADMIN = "/request/admin";
 
     private final UserService userService;
     private final RequestService requestService;
@@ -78,5 +78,4 @@ public class RequestAdminController {
         log.info("URL: /request/admin/request. GetMapping/Получение админом заявок/getAdminRequests");
         return requestService.getAdminRequests(adminId, namePart, status, sort, from, size);
     }
-
 }

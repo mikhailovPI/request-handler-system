@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class RequestOperatorController {
 
-    public final static String URL_OPERATOR = "/request/operator";
+    public static final String URL_OPERATOR = "/request/operator";
     private final RequestService requestService;
 
     //Получение всех заявок с возможностью сортировки по дате и пагинацией

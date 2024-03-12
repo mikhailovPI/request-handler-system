@@ -59,13 +59,6 @@
             <artifactId>spring-security-config</artifactId>
         </dependency>
 
-        <!-- Java Servlet -->
-        <dependency>
-            <groupId>jakarta.servlet</groupId>
-            <artifactId>jakarta.servlet-api</artifactId>
-            <version>5.0.0</version>
-        </dependency>
-
         <!-- JWT support -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>

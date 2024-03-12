@@ -1,13 +1,12 @@
 package ru.mikhailov.requesthandlersystem.master.request.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
 import ru.mikhailov.requesthandlersystem.exception.NotFoundException;
+import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestNewDto;
@@ -25,7 +24,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 @Transactional
 public class RequestServiceImpl implements RequestService {
@@ -65,6 +63,7 @@ public class RequestServiceImpl implements RequestService {
         Request request = requestMapper.toRequest(requestDto);
         request.setPublishedOn(LocalDateTime.now());
         request.setUser(user);
+        request.setStatus(RequestStatus.DRAFT);
 
         return requestMapper.toRequestAllDto(requestRepository.save(request));
     }
@@ -194,8 +193,11 @@ public class RequestServiceImpl implements RequestService {
         User user = validationUser(operatorId);
         validationOperatorRole(user);
 
-        if (!(request.getStatus().equals(RequestStatus.SHIPPED) ||
-                !request.getStatus().equals(RequestStatus.ACCEPTED))) {
+        boolean a = request.getStatus().equals(RequestStatus.SHIPPED);
+        boolean b = request.getStatus().equals(RequestStatus.ACCEPTED);
+
+        if (!(a ||
+                b)) {
             throw new NotFoundException(
                     String.format("Заявка не имеет статус %s или %s!",
                             RequestStatus.SHIPPED,
@@ -203,7 +205,6 @@ public class RequestServiceImpl implements RequestService {
         }
         request.setStatus(RequestStatus.REJECTED);
         return requestMapper.toRequestAllDto(requestRepository.save(request));
-
     }
 
     @Override

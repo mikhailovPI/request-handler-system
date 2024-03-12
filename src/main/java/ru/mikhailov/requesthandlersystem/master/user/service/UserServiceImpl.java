@@ -1,14 +1,13 @@
 package ru.mikhailov.requesthandlersystem.master.user.service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
 import ru.mikhailov.requesthandlersystem.exception.ConflictingRequestException;
 import ru.mikhailov.requesthandlersystem.exception.NotFoundException;
+import ru.mikhailov.requesthandlersystem.master.config.PageRequestOverride;
 import ru.mikhailov.requesthandlersystem.master.request.repository.RequestRepository;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserDto;
@@ -27,7 +26,6 @@ import java.util.stream.Collectors;
 import static ru.mikhailov.requesthandlersystem.master.config.Validation.validationBodyUser;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 @Transactional
 public class UserServiceImpl implements UserService {

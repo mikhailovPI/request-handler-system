@@ -1,6 +1,5 @@
 package ru.mikhailov.requesthandlersystem.security.config;
 
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,7 +12,11 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+
+import static ru.mikhailov.requesthandlersystem.master.user.controller.UserController.URL_REG;
+import static ru.mikhailov.requesthandlersystem.security.config.SecurityConfig.URL_LOGIN;
 
 @Component
 @RequiredArgsConstructor
@@ -26,6 +29,15 @@ public class JwtTokenFilter extends GenericFilterBean {
             ServletRequest servletRequest,
             ServletResponse servletResponse,
             FilterChain filterChain) throws IOException, ServletException {
+
+        HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
+        String path = httpRequest.getServletPath();
+
+        if (URL_LOGIN.equals(path) || URL_REG.equals(path)) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
         String token = jwtTokenProvider.resolveToken((HttpServletRequest) servletRequest);
 
         try {
@@ -39,6 +51,7 @@ public class JwtTokenFilter extends GenericFilterBean {
             SecurityContextHolder.clearContext();
             throw new UnauthorizedException("JWT Token просрочен или недействителен!");
         }
+
         filterChain.doFilter(servletRequest, servletResponse);
     }
 }

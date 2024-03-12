@@ -74,7 +74,7 @@ public class UserSecurity implements UserDetails {
                 user.getStatus().equals(Status.ACTIVE),
                 user.getStatus().equals(Status.ACTIVE),
                 user.getUserRole().stream()
-                        .map(role -> new SimpleGrantedAuthority(role.getName()))
+                        .flatMap(role -> role.getAuthorities().stream())
                         .collect(Collectors.toList()));
     }
 }

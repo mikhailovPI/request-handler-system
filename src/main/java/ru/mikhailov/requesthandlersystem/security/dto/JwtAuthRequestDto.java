@@ -11,5 +11,6 @@ import lombok.experimental.FieldDefaults;
 public class JwtAuthRequestDto {
 
     String email;
+
     String password;
 }

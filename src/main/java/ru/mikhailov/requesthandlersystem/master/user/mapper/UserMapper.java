@@ -1,7 +1,6 @@
 package ru.mikhailov.requesthandlersystem.master.user.mapper;
 
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserAdminDto;
 import ru.mikhailov.requesthandlersystem.master.user.dto.UserDto;
 import ru.mikhailov.requesthandlersystem.master.user.model.User;
