@@ -24,6 +24,33 @@
 
 **Используемый стек: Java 11, Spring Boot, Spring Data JPA, Spring Security, Hibernate, Maven, PostgreSQL, MapStruct**
 
+<u>***Для запуска приложения необходимо:***</u>
+- Склонировать репозиторий на ПК в необходимую папку;
+- Создать БД со следующими свойствами:
+  - HOST: localhost;
+  - PORT: 5432;
+  - user и password см. в
+    [application.properties](
+    https://github.com/mikhailovPI/request-handler-system/blob/develop/src/main/resources/application.properties);
+- Запустить файл
+  [schema.sql](https://github.com/mikhailovPI/request-handler-system/blob/develop/src/main/resources/db/schema.sql);
+- Произвести запуск приложения (class ClaimRegistrarApplication);
+- Запустить Postman на [localhost:8080](http://localhost:8080);
+- Запустить коллекцию
+  [тестов](
+  https://github.com/mikhailovPI/request-handler-system/blob/develop/info/request-handler-system.postman_collection.json)
+  в Postman. Коллекция тестов Postman содержит:
+  - запросы на создание пользователей с определенными ролями;
+  - запросы на регистрацию и обработку пользовательских заявок;
+  - запросы на проверку исключений.
+
+***Схема базы данных:***
+>![schema_database.png](request-handler-system/info/schema_database.png)
+>
+***Данные для тестирования в Postman:***
+[tests](
+https://github.com/mikhailovPI/request-handler-system/blob/develop/info/request-handler-system.postman_collection.json)
+
 
 
 
