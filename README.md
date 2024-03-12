@@ -45,8 +45,9 @@
   - запросы на проверку исключений.
 
 ***Схема базы данных:***
->![schema_database.png](request-handler-system/info/schema_database.png)
+>![schema_database.png](info/schema_database.PNG)
 >
+
 ***Данные для тестирования в Postman:***
 [tests](
 https://github.com/mikhailovPI/request-handler-system/blob/develop/info/request-handler-system.postman_collection.json)
