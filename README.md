@@ -45,7 +45,7 @@
   - запросы на проверку исключений.
 
 ***Схема базы данных:***
->![schema_database.png](info/schema_database.PNG)
+>![schema_database.png](info/schema_database.png)
 >
 
 ***Данные для тестирования в Postman:***
