@@ -2,8 +2,11 @@ package ru.mikhailov.requesthandlersystem.master.request.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import ru.mikhailov.requesthandlersystem.kafka.KafkaProducerService;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestAllDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestDto;
 import ru.mikhailov.requesthandlersystem.master.request.dto.RequestNewDto;
@@ -20,6 +23,8 @@ public class RequestUserController {
 
     public static final String URL_USER = "/request/users";
     private final RequestService requestService;
+    private final KafkaProducerService kafkaProducerService;
+
 
     //Просмотр заявок пользователя с возможностью сортировки по дате и пагинацией
     @GetMapping(path = "/{userId}/{sort}")
@@ -36,11 +41,13 @@ public class RequestUserController {
     //Создание заявки
     @PostMapping(path = "/{userId}")
     @PreAuthorize("hasAuthority('user:write')")
-    public RequestAllDto createRequest(
+    public ResponseEntity<String> createRequest(
             @RequestBody RequestNewDto request,
             @PathVariable Long userId) {
         log.info("URL: /request/users/{userId}. PostMapping/Создание заявки/createRequest");
-        return requestService.createRequest(request, userId);
+        RequestAllDto requestDto = requestService.prepareRequest(request, userId);
+        kafkaProducerService.sendMessage("requestTopic", requestDto);
+        return ResponseEntity.ok("Запрос обрабатывается");
     }
 
     //Отправка заявки на рассмотрение

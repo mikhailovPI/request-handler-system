@@ -56,19 +56,6 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public RequestAllDto createRequest(RequestNewDto requestDto, Long userId) {
-        User user = validationUser(userId);
-        validationUserRole(user);
-
-        Request request = requestMapper.toRequest(requestDto);
-        request.setPublishedOn(LocalDateTime.now());
-        request.setUser(user);
-        request.setStatus(RequestStatus.DRAFT);
-
-        return requestMapper.toRequestAllDto(requestRepository.save(request));
-    }
-
-    @Override
     public RequestDto sendRequest(Long userId, Long requestId) {
         Request request = validationRequest(requestId);
         User user = validationUser(userId);
@@ -194,7 +181,7 @@ public class RequestServiceImpl implements RequestService {
         validationOperatorRole(user);
 
         if (!(request.getStatus().equals(RequestStatus.SHIPPED) ||
-        request.getStatus().equals(RequestStatus.ACCEPTED))) {
+                request.getStatus().equals(RequestStatus.ACCEPTED))) {
             throw new NotFoundException(
                     String.format("Заявка не имеет статус %s или %s!",
                             RequestStatus.SHIPPED,
@@ -224,6 +211,19 @@ public class RequestServiceImpl implements RequestService {
         return requests.stream()
                 .map(requestMapper::toRequestAllDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public RequestAllDto prepareRequest(RequestNewDto requestDto, Long userId) {
+        User user = validationUser(userId);
+        validationUserRole(user);
+        Request request = new Request();
+        request.setText(requestDto.getText());
+        request.setStatus(RequestStatus.DRAFT);
+        request.setUser(user);
+        request.setPublishedOn(LocalDateTime.now());
+        return requestMapper.toRequestAllDto(request);
     }
 
     //Методы валидации переданного id

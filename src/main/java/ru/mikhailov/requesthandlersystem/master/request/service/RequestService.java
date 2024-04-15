@@ -15,8 +15,6 @@ public interface RequestService {
     //Методы для пользователя
     List<RequestDto> getRequestsByUser(Long userId, String sort, int from, int size);
 
-    RequestAllDto createRequest(RequestNewDto request, Long userId);
-
     RequestDto sendRequest(Long userId, Long requestId);
 
     RequestDto updateRequest(Long userId, Long requestId, RequestUpdateDto requestUprateDto);
@@ -40,4 +38,6 @@ public interface RequestService {
                                          String sort,
                                          int from,
                                          int size);
+
+    RequestAllDto prepareRequest(RequestNewDto request, Long userId);
 }
