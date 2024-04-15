@@ -14,4 +14,6 @@ public interface RequestMapper {
     RequestDto toRequestDto(Request request);
 
     RequestAllDto toRequestAllDto(Request request);
+
+    Request toRequestAll(RequestAllDto requestAllDto);
 }
